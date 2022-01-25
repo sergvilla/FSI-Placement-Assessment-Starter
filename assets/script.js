@@ -1,27 +1,65 @@
-// HINT: You can delete this console.log after you no longer need it!
-console.log('JavaScript code has loaded!')
-// First, tell us your name
-let yourName = "Jane Doe" // HINT: Replace this with your own name!
+// Tell us your name 
+let yourName = 'Sergio Villavicencio'
 
-// We'll use these variables to track the counts of each cookie type
-let gb = 0 // Gingerbread
-let cc = 0 // Chocolate Chip
-let sugar = 0 // Sugar Sprinkle
+//Variables to track counts of each cookie type
+let gb = 0 //Gingerbread
+let cc = 0 //Chocolate Chip 
+let sugar = 0 //Sugar Sprinkle 
 
-// selecting the element with an id of credit
-const credit = document.querySelector('#credit')
-// selecting the element with an id of add-gb
-const gbPlusBtn = document.querySelector('#add-gb')
+let cookieTotal = gb + cc + sugar
+function updateTotal(ct1, ct2, ct3) {
+    cookieTotal = ct1 + ct2 + ct3
+    console.log(cookieTotal)
+    document.getElementById('qty-total').innerHTML = cookieTotal
+    
+}
 
 // Code to update name display
-credit.textContent = `Created by ${yourName}`
+document.getElementById('credit').textContent = `Created by ${yourName}`
 
-// Event listener for clicks on the "+" button for Gingerbread cookies
-gbPlusBtn.addEventListener('click', function() {
-// HINT: You can delete this console.log after you no longer need it!
-console.log('Gingerbread + button was clicked!')
-
-// TODO: Write the code to be run when the "+" button for "Gingerbread" is clicked
+// GB Buttons 
+document.getElementById('add-gb').addEventListener('click',function(){
+    gb = gb + 1
+    document.getElementById('qty-gb').innerHTML = gb
+    updateTotal(gb, cc, sugar) 
 })
 
-// TODO: Hook up event listeners for the rest of the buttons
+document.getElementById('minus-gb').addEventListener('click', function(){
+    if(gb > 0){
+        gb = gb - 1
+        document.getElementById('qty-gb').innerHTML = gb
+        updateTotal(gb, cc, sugar)
+    }
+})
+
+// CC Buttons
+document.getElementById('add-cc').addEventListener('click', function(){
+    cc = cc + 1
+    document.getElementById('qty-cc').innerHTML = cc
+updateTotal(gb, cc, sugar)
+})
+
+document.getElementById('minus-cc').addEventListener('click', function(){
+    if(cc > 0){
+        cc = cc - 1
+        document.getElementById('qty-cc').innerHTML = cc 
+        updateTotal(gb, cc, sugar)
+    }
+})
+
+
+// SS Buttons 
+document.getElementById('add-sugar').addEventListener('click', function(){
+    sugar = sugar + 1
+    document.getElementById('qty-sugar').innerHTML = sugar 
+    updateTotal(gb, cc, sugar) 
+
+}) 
+
+document.getElementById('minus-sugar').addEventListener('click', function(){
+    if(sugar > 0){
+        sugar = sugar - 1
+        document.getElementById('qty-sugar').innerHTML = sugar 
+        updateTotal(gb, cc, sugar)
+    }
+})
